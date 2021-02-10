@@ -10,7 +10,7 @@
             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Scan">
+        <NavigationPage Title="Scanner">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -20,7 +20,7 @@
                 <views:ScanPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Scans">
+        <NavigationPage Title="Liste Promotion">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
