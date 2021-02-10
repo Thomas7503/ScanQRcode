@@ -1,4 +1,5 @@
 ﻿using ScanDemo.Repositories;
+using ScanDemo.Services;
 using ScanDemo.Views;
 using System;
 using System.IO;
@@ -17,6 +18,8 @@ namespace ScanDemo
             InitializeComponent();
 
             PromotionRepository = new PromotionRepository(dbPath);
+
+            DependencyService.Register<MockDataStore>();
 
             MainPage = new MainPage();
         }
