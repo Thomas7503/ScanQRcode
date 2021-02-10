@@ -20,7 +20,7 @@ namespace ScanDemo.Views
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await DisplayAlert("Scanned result", "The barcode's text is " + result.Text + ". The barcode's format is " + result.BarcodeFormat, "OK");
+                await DisplayAlert("Scanned result", "The barcode's text is <a>" + result.Text + "</a>. The barcode's format is " + result.BarcodeFormat, "OK");
             });
         }
     }
