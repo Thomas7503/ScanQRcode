@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using ScanDemo.Models;
 using ScanDemo.Views;
 using ScanDemo.ViewModels;
+using ScanDemo.Services;
 
 namespace ScanDemo.Views
 {
@@ -25,6 +25,15 @@ namespace ScanDemo.Views
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel();
+        }
+
+        public async Task Initialize()
+        {
+            MockDataStore MockDataStore = new MockDataStore();
+            List<Item> AllItems = MockDataStore.GetAllItems();
+
+            foreach(Item Item in AllItems)
+            MessagingCenter.Send(this, "AddItem", Item);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

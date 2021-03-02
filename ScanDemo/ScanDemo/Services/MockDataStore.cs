@@ -19,7 +19,8 @@ namespace ScanDemo.Services
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "My item", Description="This is an item description." }
             };
         }
 
@@ -50,6 +51,11 @@ namespace ScanDemo.Services
         public async Task<Item> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+        }
+
+        public List<Item> GetAllItems()
+        {
+            return  items;
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
