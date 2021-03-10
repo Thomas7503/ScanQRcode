@@ -8,7 +8,7 @@ namespace ScanDemo.ViewModels
     {
         public ScanViewModel()
         {
-            Title = "Scan";
+            Title = "Scanner";
         }
     }
 }

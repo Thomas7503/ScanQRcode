@@ -8,10 +8,15 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
+        <Label Text="Titre:" FontSize="Medium" />
+        <Label Text="{Binding Item.Titre}" d:Text="Item titre" FontSize="Small"/>
+        <Label Text="Pourcentage:" FontSize="Medium" />
+        <Label Text="{Binding Item.Pourcentage}" d:Text="Item pourcentage" FontSize="Small"/>
+        <Label Text="Code:" FontSize="Medium" />
+        <Label Text="{Binding Item.Code}" d:Text="Item code" FontSize="Small"/>
+        <Label Text="Adresse:" FontSize="Medium" />
+        <Label Text="{Binding Item.Adresse}" d:Text="Item adresse" FontSize="Small"/>
+        <Label Text="Date de fin:" FontSize="Medium" />
+        <Label Text="{Binding Item.DateDeFin}" d:Text="Item date de fin" FontSize="Small"/>
     </StackLayout>
-    
 </ContentPage>
