@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using ScanDemo.Models;
 
 namespace ScanDemo.Services
 {
     public class MockDataStore : IDataStore<Item>
     {
-        readonly List<Item> items;
+        public List<Item> items;
 
         public MockDataStore()
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "My item", Description="This is an item description." }
+                new Item { Id = 1, Titre = "First item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 2, Titre = "Second item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 3, Titre = "Third item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 4, Titre = "Fourth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 5, Titre = "Fifth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 6, Titre = "Sixth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
+                new Item { Id = 7, Titre = "My item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" }
             };
         }
 
@@ -40,7 +43,7 @@ namespace ScanDemo.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(long id)
         {
             var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
@@ -48,13 +51,34 @@ namespace ScanDemo.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(long id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public List<Item> GetAllItems()
+        public async Task<List<Item>> GetAllItems()
         {
+            //string message;
+            //HttpClient client = new HttpClient();
+            //Uri uri = new Uri("https://gostylemspr.herokuapp.com/getcoupon");
+            //HttpResponseMessage response = await client.GetAsync(uri);
+
+            //if (response.StatusCode == HttpStatusCode.Found)
+            //{
+            //    message = await response.Content.ReadAsStringAsync();
+            //    JArray coupons = JArray.Parse(message);
+
+            //    /*List<Item>*/ items = (List<Item>)coupons.Select(x => new Item
+            //    {
+            //        Id = (long)x["id"],
+            //        Titre = (string)x["titre"],
+            //        Pourcentage = (int)x["pourcentage"],
+            //        Code = (string)x["code"],
+            //        Adresse = (string)x["adresse"],
+            //        DateDeFin = (string)x["dateDeFin"],
+            //    }).ToList();
+            //}
+
             return  items;
         }
 

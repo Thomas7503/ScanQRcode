@@ -21,8 +21,12 @@ namespace ScanDemo.Views
 
             Item = new Item
             {
-                Text = "Item name",
-                Description = "This is an item description."
+                Titre = "Item titre",
+                Pourcentage = 50,
+                Code = "Item code",
+                Adresse = "Item adresse",
+                DateDeFin = "Item date de fin",
+
             };
 
             BindingContext = this;

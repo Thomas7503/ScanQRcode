@@ -28,8 +28,11 @@ namespace ScanDemo.Views
 
             var item = new Item
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                Titre = "Item 1",
+                Pourcentage = 50,
+                Code = "ertf1",
+                Adresse = "adresse 1",
+                DateDeFin = "20/20/2555"
             };
 
             viewModel = new ItemDetailViewModel(item);
