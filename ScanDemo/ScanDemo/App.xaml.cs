@@ -1,5 +1,4 @@
-﻿using ScanDemo.Repositories;
-using ScanDemo.Services;
+﻿using ScanDemo.Services;
 using ScanDemo.Views;
 using System;
 using System.IO;
@@ -12,12 +11,12 @@ namespace ScanDemo
     {
         private string dbPath = Path.Combine(FileSystem.AppDataDirectory, "database.db3");
 
-        public static PromotionRepository PromotionRepository { get; private set; }
+        //public static PromotionRepository PromotionRepository { get; private set; }
         public App()
         {
             InitializeComponent();
 
-            PromotionRepository = new PromotionRepository(dbPath);
+            //PromotionRepository = new PromotionRepository(dbPath);
 
             DependencyService.Register<MockDataStore>();
 
