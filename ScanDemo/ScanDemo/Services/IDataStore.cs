@@ -9,7 +9,9 @@ namespace ScanDemo.Services
         Task<bool> AddItemAsync(T item);
         Task<bool> UpdateItemAsync(T item);
         Task<bool> DeleteItemAsync(long id);
-        Task<T> GetItemAsync(long id);
+        Task<T> GetItemByCodeAsync(string code);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<List<T>> GetAllItems();
+        Task<bool> AddItem(T item);
     }
 }

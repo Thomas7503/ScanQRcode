@@ -21,11 +21,28 @@ namespace ScanDemo.ViewModels
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            //MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem",(obj, item) =>
             {
-                var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                bool res = false;
+                foreach (Item i in Items)
+                {
+                    if (i.Code != item.Code)
+                    {
+                        res = true;
+                    }
+                    else
+                    {
+                        res = false;
+                        break;
+                    }
+                }
+
+                if (res)
+                {
+                    Items.Add(item);
+                    DataStore.AddItem(item);
+                }
             });
         }
 
@@ -39,7 +56,8 @@ namespace ScanDemo.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                //var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetAllItems();
                 foreach (var item in items)
                 {
                     Items.Add(item);

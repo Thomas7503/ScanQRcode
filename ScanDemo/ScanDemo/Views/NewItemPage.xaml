@@ -14,15 +14,15 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
+            <Label Text="Titre" FontSize="Medium" />
             <Entry Text="{Binding Item.Titre}" d:Text="Item name" FontSize="Small" />
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="Pourcentage:" FontSize="Medium" />
             <Entry Text="{Binding Item.Pourcentage}" d:Text="Item pourcentage" FontSize="Small"/>
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="Code:" FontSize="Medium" />
             <Entry Text="{Binding Item.Code}" d:Text="Item code" FontSize="Small"/>
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="Adresse:" FontSize="Medium" />
             <Entry Text="{Binding Item.Adresse}" d:Text="Item adresse" FontSize="Small"/>
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="Date de fin:" FontSize="Medium" />
             <Entry Text="{Binding Item.DateDeFin}" d:Text="Item date de fin" FontSize="Small"/>
         </StackLayout>
     </ContentPage.Content>
