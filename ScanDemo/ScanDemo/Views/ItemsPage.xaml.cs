@@ -19,6 +19,7 @@ namespace ScanDemo.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
+        //IDataStore<Item> MockDataStore;
 
         public ItemsPage()
         {
@@ -27,14 +28,14 @@ namespace ScanDemo.Views
             BindingContext = viewModel = new ItemsViewModel();
         }
 
-        public async Task Initialize()
-        {
-            //MockDataStore MockDataStore = new MockDataStore();
-            //List<Item> AllItems = MockDataStore.GetAllItems();
+        // public async Task Initialize()
+        //{
+        //    MockDataStore MockDataStore = new MockDataStore();
+        //    await MockDataStore.GetAllItems();
 
-            //foreach(Item Item in AllItems)
-            //MessagingCenter.Send(this, "AddItem", Item);
-        }
+        //    //foreach(Item Item in AllItems)
+        //    //MessagingCenter.Send(this, "AddItem", Item);
+        //}
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
@@ -47,17 +48,23 @@ namespace ScanDemo.Views
             ItemsListView.SelectedItem = null;
         }
 
-        //async void AddItem_Clicked(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        //}
+        async void AddItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
 
-        protected override void OnAppearing()
+        protected override /*async*/ void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            //if (viewModel.Items.Count == 0)
+            //    viewModel.LoadItemsCommand.Execute(null);
+
+            viewModel.LoadItemsCommand.Execute(null);
+
+
+
+            //await MockDataStore.GetAllItems();
         }
     }
 }

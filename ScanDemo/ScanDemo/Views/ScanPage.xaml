@@ -7,6 +7,9 @@
              mc:Ignorable="d"
              x:Class="ScanDemo.Views.ScanPage"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Test" Clicked="TestQrCode" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid VerticalOptions="CenterAndExpand"
               HorizontalOptions="CenterAndExpand">
