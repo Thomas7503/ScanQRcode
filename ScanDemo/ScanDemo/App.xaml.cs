@@ -18,7 +18,7 @@ namespace ScanDemo
 
             //PromotionRepository = new PromotionRepository(dbPath);
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DataStore>();
 
             MainPage = new MainPage();
         }

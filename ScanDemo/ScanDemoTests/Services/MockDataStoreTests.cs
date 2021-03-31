@@ -16,10 +16,10 @@
 //        public void TestAddItemAsync()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 //            // TODO : ajouter les nouvelles variables à Item.cs et modifier l'objet ci-dessous
 //            // On crée un nouvel item
-//            Item item = new Item { Id = 999, Titre = "First item", Pourcentage = 4 , Code = "4444" , Adresse = "nimes" , DateDeFin = "20-01-2000"};
+//            Item item = new Item { Id = 999, Titre = "First item", Pourcentage = 4, Code = "4444", Adresse = "nimes", DateDeFin = "20-01-2000" };
 
 //            // Act avec id = "999"
 //            var result = mock.AddItemAsync(item).Result;
@@ -32,7 +32,7 @@
 //        public void TestUpdateItemAsync()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 //            // TODO : ajouter les nouvelles variables à Item.cs et modifier l'objet ci-dessous
 //            // On crée un nouvel item avec le meme id
 //            Item item = new Item { Id = "999", Text = "Other item", Description = "This is an other item description." };
@@ -48,7 +48,7 @@
 //        public void TestGetItemAsync()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 
 //            // On crée un nouvel item
 //            Item item = new Item { Id = "777", Text = "An other item", Description = "This is again an other item description." };
@@ -74,7 +74,7 @@
 //        public void TestGetAllItems()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 
 //            // Act
 //            var result = mock.GetAllItems();
@@ -90,7 +90,7 @@
 //        public void TestDeleteItemAsync()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 
 //            // Act avec id = "999"
 //            var result = mock.DeleteItemAsync(999).Result;
@@ -107,7 +107,7 @@
 //        public void TestIntegrationTest()
 //        {
 //            // Arrange
-//            MockDataStore mock = new MockDataStore();
+//            DataStore mock = new DataStore();
 
 //            // METHOD 1 : ADD() 
 //            // TODO : ajouter les nouvelles variables à Item.cs et modifier l'objet ci-dessous
@@ -137,7 +137,7 @@
 //            }
 
 //            // METHOD 3 : GET()
-//            // Act avec id = "999" que l'on à modifier juste avant
+//            Act avec id = "999" que l'on à modifier juste avant
 //            var getResult = mock.GetItemAsync("999").Result;
 
 //            // Assert

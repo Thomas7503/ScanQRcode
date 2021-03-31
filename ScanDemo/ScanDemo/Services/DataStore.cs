@@ -11,12 +11,12 @@ using ScanDemo.Models;
 
 namespace ScanDemo.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class DataStore : IDataStore<Item>
     {
         public List<Item> items;
         readonly HttpClient client = new HttpClient();
 
-        public MockDataStore()
+        public DataStore()
         {
             //items = new List<Item>()
             //{
