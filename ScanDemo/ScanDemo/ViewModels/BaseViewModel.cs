@@ -13,6 +13,8 @@ namespace ScanDemo.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public DataStore DataStore2 => DependencyService.Get<DataStore>();
+
 
         bool isBusy = false;
         public bool IsBusy

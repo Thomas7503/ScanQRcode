@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ScanDemo.Models;
+using ScanDemo.Services;
+using System;
 using System.ComponentModel;
+using System.Net.Http;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,5 +17,7 @@ namespace ScanDemo.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

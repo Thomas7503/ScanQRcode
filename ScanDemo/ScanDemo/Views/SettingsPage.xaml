@@ -79,6 +79,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Button Text="Logout" x:Name="Logout" Clicked="LogoutOut"/>
             </StackLayout>
         </ScrollView>
     </Grid>

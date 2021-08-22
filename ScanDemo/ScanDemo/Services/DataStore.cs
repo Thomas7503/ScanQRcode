@@ -13,21 +13,14 @@ namespace ScanDemo.Services
 {
     public class DataStore : IDataStore<Item>
     {
-        public List<Item> items;
-        readonly HttpClient client = new HttpClient();
+        public static List<Item> items;
+        public static HttpClient client = new HttpClient();
+        public static User user = new User();
+
+
 
         public DataStore()
         {
-            //items = new List<Item>()
-            //{
-            //    new Item { Id = 1, Titre = "First item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 2, Titre = "Second item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 3, Titre = "Third item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 4, Titre = "Fourth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 5, Titre = "Fifth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 6, Titre = "Sixth item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" },
-            //    new Item { Id = 7, Titre = "My item", Pourcentage = 10, Code = "ABCD", Adresse = "montpellier", DateDeFin="08/10/2022" }
-            //};
         }
 
         public async Task<bool> AddItemAsync(Item item)
@@ -39,7 +32,6 @@ namespace ScanDemo.Services
 
         public async Task<bool> UpdateItemAsync(Item item)
         {
-            //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
             var oldItem = items.FirstOrDefault((Item arg) => arg.Id == item.Id);
 
             items.Remove(oldItem);
@@ -56,11 +48,6 @@ namespace ScanDemo.Services
             return await Task.FromResult(true);
         }
 
-        //public async Task<Item> GetItemAsync(long id)
-        //{
-        //    return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
-        //}
-
         public async Task<Item> GetItemByCodeAsync(string code)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Code == code));
@@ -74,10 +61,11 @@ namespace ScanDemo.Services
         public async Task<List<Item>> GetAllItems()
         {
             string message;
-            Uri uri = new Uri("https://gostylemspr.herokuapp.com/getCoupon");
+            string userId = user.Id.ToString();
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/getCoupon?idUser=" + userId);
             HttpResponseMessage response = await client.GetAsync(uri);
 
-            if (response.StatusCode == HttpStatusCode.Found)
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 message = await response.Content.ReadAsStringAsync();
                 JArray coupons = JArray.Parse(message);
@@ -92,6 +80,8 @@ namespace ScanDemo.Services
                     DateDeFin = (string)x["dateDeFin"],
                 }).ToList();
             }
+
+            // get all coupon to user !!!
 
             return  items;
         }
@@ -108,6 +98,61 @@ namespace ScanDemo.Services
             items.Add(item);
 
             return await Task.FromResult(true);
+        }
+
+        public async void DeleteItem(Item item)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/deleteCoupon" + "?id=" + item.Id);
+
+            string uriString = uri.ToString();
+
+            await client.DeleteAsync(uriString);
+
+            items.Remove(item);
+        }
+
+        public static async Task<HttpResponseMessage> AddCoupon(string idUser, string idCoupon)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/addCoupon?idUser=" + idUser + "&idCoupon=" + idCoupon);
+            return await client.PostAsync(uri, null);
+        }
+
+        public static async Task<HttpResponseMessage> DeleteCoupon(string idUser, string idCoupon)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/deleteCoupon?idUser=" + idUser + "&idCoupon=" + idCoupon);
+            return await client.DeleteAsync(uri);
+        }
+
+        public static async Task<HttpResponseMessage> AddUser(User user)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/addUser" +
+                "?email=" + user.Email + "&password=" + user.Password);
+
+            return await client.PostAsync(uri, null);
+        }
+
+        public static async Task<HttpResponseMessage> Login(string mail, string pass)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/login" +
+                "?email=" + mail + "&password=" + pass);
+
+
+            return await client.GetAsync(uri);
+        }
+
+        public static void Logout()
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/logout");
+
+            client.GetAsync(uri);
+        }
+
+        public static async Task<HttpResponseMessage> ConfirmUser(string mail, string pass, string code)
+        {
+            Uri uri = new Uri("https://gostylemspr.herokuapp.com/confirmUser" +
+                "?email=" + mail + "&password=" + pass + "&code" + code);
+
+            return await client.PostAsync(uri, null);
         }
     }
 }

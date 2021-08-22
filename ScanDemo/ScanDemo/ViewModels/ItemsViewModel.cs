@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using ScanDemo.Services;
 
 using ScanDemo.Models;
 using ScanDemo.Views;
@@ -20,21 +21,29 @@ namespace ScanDemo.ViewModels
             Title = "Liste Promotion";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            
 
             //MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem",(obj, item) =>
             {
                 bool res = false;
-                foreach (Item i in Items)
+                if(Items.Count == 0)
                 {
-                    if (i.Code != item.Code)
+                    res = true;
+                }
+                else
+                {
+                    foreach (Item i in Items)
                     {
-                        res = true;
-                    }
-                    else
-                    {
-                        res = false;
-                        break;
+                        if (i.Code != item.Code)
+                        {
+                            res = true;
+                        }
+                        else
+                        {
+                            res = false;
+                            break;
+                        }
                     }
                 }
 
@@ -43,6 +52,29 @@ namespace ScanDemo.ViewModels
                     Items.Add(item);
                     DataStore.AddItem(item);
                 }
+            });
+
+            MessagingCenter.Subscribe<ItemDetailPage, Item>(this, "DeleteItem", (obj, item) =>
+            {
+                //bool res = false;
+                //foreach (Item i in Items)
+                //{
+                //    if (i.Code != item.Code)
+                //    {
+                //        res = true;
+                //    }
+                //    else
+                //    {
+                //        res = false;
+                //        break;
+                //    }
+                //}
+
+                //if (res)
+                //{
+                    Items.Remove(item);
+                    DataStore.DeleteItem(item);
+                //}
             });
         }
 

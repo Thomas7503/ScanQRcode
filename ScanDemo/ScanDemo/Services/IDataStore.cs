@@ -13,5 +13,7 @@ namespace ScanDemo.Services
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
         Task<List<T>> GetAllItems();
         Task<bool> AddItem(T item);
+        void DeleteItem(T item);
+
     }
 }

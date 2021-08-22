@@ -2,6 +2,7 @@
 using ScanDemo.Views;
 using System;
 using System.IO;
+using System.Net.Http;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -20,7 +21,23 @@ namespace ScanDemo
 
             DependencyService.Register<DataStore>();
 
-            MainPage = new MainPage();
+            //HttpResponseMessage response = DataStore.Login(mail, pass);
+
+            //if (response.StatusCode == HttpStatusCode.Found)
+            //{
+            //    string message = await response.Content.ReadAsStringAsync();
+            //    JObject o = JObject.Parse(message);
+            //    DataStore.user = o.ToObject<User>();
+            //    //Constante.utilisateur.Connecter = true;
+            //    await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+            //}
+            //else
+            //{
+            //    MainPage = new MainPage();
+            //}
+
+            MainPage = new LoginPage();
+           // MainPage();
         }
 
         protected override void OnStart()

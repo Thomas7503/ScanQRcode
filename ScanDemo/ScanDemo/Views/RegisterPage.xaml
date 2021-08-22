@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ScanDemo.Views.RegisterPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage">  
+    <StackLayout>
+        <Entry Placeholder="Email" x:Name="Email"/>
+        <Entry Placeholder="Password" x:Name="Pass"/>
+        <Entry Placeholder="PasswordConfirm" x:Name="PassConfirm"/>
+        <Button Text="Register" x:Name="Register" Clicked="RegisterClicked"/>
+        
+        <Entry Placeholder="CodeMail" x:Name="CodeMail"/>
+        <Button Text="Valide" x:Name="ValideCodeMail" Clicked="ValideCodeMailClicked"/>
+    </StackLayout>
+</ContentPage>

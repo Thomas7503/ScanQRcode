@@ -27,19 +27,25 @@ namespace ScanDemo.ViewModels
             //MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             MessagingCenter.Subscribe<ScanPage, Item>(this, "AddItem", async (obj, item) =>
             {
-                var items = await DataStore.GetAllItems();
 
                 bool res = false;
-                foreach (Item i in items)
+                if (Items.Count == 0)
                 {
-                    if (i.Code != item.Code)
+                    res = true;
+                }
+                else
+                {
+                    foreach (Item i in Items)
                     {
-                        res = true;
-                    }
-                    else
-                    {
-                        res = false;
-                        break;
+                        if (i.Code != item.Code)
+                        {
+                            res = true;
+                        }
+                        else
+                        {
+                            res = false;
+                            break;
+                        }
                     }
                 }
 
